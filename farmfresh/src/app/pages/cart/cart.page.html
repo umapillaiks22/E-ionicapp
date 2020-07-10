@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons  slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Speakers</ion-title>
+      <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid fixed>
+    <!-- <ion-row> -->
+      <ion-col size="12" size-md="6" *ngFor="let speaker of speakers;let i = index">
+        <ion-list class="speaker-card" *ngIf=speaker.qty >
+          <!-- <ion-card-header> -->
+            <ion-item detail="false" lines="none">
+              <ion-avatar slot="start">
+                <ion-label>
+                  <ion-icon name="close-outline" (click)="remove(i)" ></ion-icon>
+                </ion-label>
+                <img [src]="speaker.profilePic" [alt]="speaker.vname + ' profile picture'">
+              </ion-avatar>
+              <ion-label>
+                <h2>{{speaker.vname}}</h2>
+                <p>Price : {{speaker.price}}/kg</p>
+                <p>Total : Rs {{speaker.qty * speaker.price}}</p>
+              </ion-label>
+              <ion-label>
+                Qty:
+                <button class="add-btn" clear (click)="decrementQty(i)"><ion-icon name="remove" ></ion-icon></button>
+                <span>   {{speaker.qty}}   </span>
+                <button class="add-btn" clear (click)="incrementQty(i)"><ion-icon name="add" ></ion-icon></button>
+              </ion-label>
+              </ion-item>
+
+          <!-- </ion-card-header> -->
+        </ion-list>
+      </ion-col>
+    <!-- </ion-row> -->
+
+    <ion-row>
+      <ion-col>
+      <p>Total Items : 10</p>
+    </ion-col>
+    <ion-col>
+      <p align="right">Total Price : 100/-</p>
+    </ion-col>
+    </ion-row>
+  
+    <ion-button expand="block"  color="success" routerLink="/checkout" expand="block">Checkout</ion-button>
+
+  </ion-grid>
+  </ion-content>
